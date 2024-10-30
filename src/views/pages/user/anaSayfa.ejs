@@ -1,0 +1,58 @@
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<div class="background">
+  <div id="basvurugetir" class="container">
+    <div id="basvuru" class="container">
+      
+      <a id="ozel" href="#" class="button">Başvur</a>
+      
+    <!--  optional  -->
+    </div>
+  </div>
+</div>
+
+<script>
+  $(document).ready(function() {
+  $("#basvuru").click(function() {
+    $("#basvurugetir").append('<div class="screen"> <div class="screen-header"> <div class="screen-header-left"> <div class="screen-header-button close"></div> <div class="screen-header-button maximize"></div> <div class="screen-header-button minimize"></div> </div> <div class="screen-header-right"> <div class="screen-header-ellipsis"></div> <div class="screen-header-ellipsis"></div> <div class="screen-header-ellipsis"></div> </div> </div> <div class="screen-body"> <div class="screen-body-item left"> <div class="app-title"> <span>Magnet</span> <span>Başvuru Formu</span> </div> </div> <br> <br> <form action="/basvur" method="post" enctype="application/x-www-form-urlencoded"> <div class="screen-body-item"> <div class="app-form"> <div class="app-form-group"> <input name="name" class="app-form-control" placeholder="İsim Soyisim"> </div> <div class="app-form-group"> <input name="discord_name" class="app-form-control" placeholder="Discord Nickiniz xxx#1234 şeklinde tam giriniz" required> </div> <div class="app-form-group"> <input name="email" class="app-form-control" placeholder="Email Adresiniz" required> </div> <div class="app-form-group message"> <input name="age" class="app-form-control" placeholder="Doğum Tarihi GG-AA-YYYY" required> </div> <div class="app-form-group message"> <textarea id="information" name="information" class="app-form-control" placeholder="Kendinizden Bahsedin" style="width: 500px; height: 80px;" required></textarea> </div> <div class="app-form-group message"> <textarea id="links" name="links" class="app-form-control" placeholder="Referans Linkleriniz(Github,Behance,Instagram vb..)" style="width: 500px; height: 80px;" required></textarea> </div> <div class="app-form-group message"> <h3 style="color: #EA246E;">İlgilendiğiniz Alan</h3> <select name="category" id="category" class="app-form-control" placeholder="Alan Seçiniz" required> <option value="Sanatçı">Sanatçı</option> <option value="Yapımcı">Yapımcı</option> <option value="Ses Mühendisi">Ses Mühendisi</option> <option value="Yazılım">Yazılım</option> <option value="Metin Yazarlığı">Metin Yazarlığı</option> <option value="3D Artist">3D Artist</option> <option value="Moda">Moda</option> <option value="Influencer">Influencer</option> <option value="Videographer">Videographer</option> <option value="Borsa">Borsa</option> <option value="İçerik Üreticisi">İçerik Üreticisi</option> <option value="Fotoğraf">Fotoğraf</option> <option value="Illustrasyon">Illustrasyon</option> <option value="Grafik Tasarım">Grafik Tasarım</option> <option value="Oyun Geliştiricisi">Oyun Geliştiricisi</option> <option value="Pazarlama">Pazarlama</option> <option value="Post Produksiyon">Post Produksiyon</option> <option value="Sahne Sanatları">Sahne Sanatları</option> <option value="NFT">NFT</option> <option value="BlockChain">BlockChain</option> <option value="Yayıncı">Yayıncı</option> <option value="Yapay Zeka">Yapay Zeka</option> <option value="Diğer...">Diğer...</option> </select> </div> <div id="push"> </div> <div class="app-form-group buttons"> <button type="submit" class="app-form-button">Başvur</button> </div> </div> </div> </form> </div> </div>')
+    if (window.matchMedia("(max-width: 767px)").matches) {
+      // Mobil görünüme geçildi
+      const textAreas = document.querySelectorAll('.message textarea');
+      textAreas.forEach(textarea => {
+        textarea.style.width = "275px";
+        textarea.style.height = "50px";
+      });
+    } else {
+      // Mobil görünüm değil
+    }
+    $(this).hide();
+  });
+});
+
+$(document).on("change", "select", function () {
+  if (!$(this).data("firstExecution")) { 
+      if ($(this).val() === "Diğer...") {
+        $("#push").append('<div class="app-form-group message"><input name="diger" class="app-form-control" placeholder="Lütfen hangi alan olduğunu belirtiniz." required></div>');
+      } else {
+        $("#push").empty();
+      }
+  }
+});
+</script>
+<script>
+  let textarea = document.getElementById("#links");
+textarea.addEventListener("input", function() {
+  let words = this.value.split(" ");
+  if (words.length > 150) {
+    words.splice(150, words.length - 150);
+    this.value = words.join(" ");
+  }
+});
+let textarea2 = document.getElementById("#information");
+textarea2.addEventListener("input", function() {
+  let words = this.value.split(" ");
+  if (words.length > 150) {
+    words.splice(150, words.length - 150);
+    this.value = words.join(" ");
+  }
+});
+</script>

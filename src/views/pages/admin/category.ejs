@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<style>
+    .background{
+        color: black;
+    }
+</style>
+<html>
+  <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  </head>
+  <body>
+    <style>
+        body {
+          background-color: #343a40;
+          color: white;
+        }
+        .card {
+          background-color: #454d55;
+        }
+        a {
+          color: white;
+        }
+      </style>
+    <div class="container mt-5">
+      <h2 class="text-center">Başvuru Değerlendirme</h2>
+      <div class="row mt-5">
+        <div class="col-md-6 offset-md-3" id="cardim">
+          <div class="card">
+            <div class="card-header">Başvuranın Doğum Tarihi: <%-basvurular[0].age %></div>
+            <div class="card-body">         
+              <h5 id="isim" class="card-title"><%-basvurular[0].name %></h5>
+              <p class="card-text"><%-basvurular[0].information %></p>
+              <p class="card-text"><%-basvurular[0].links %> </p>
+              <p class="card-text"><%-basvurular[0].discord_name %> </p>
+              <button id="ele" type="button" class="btn btn-danger">Ele</button>
+              <button id="sonraki" type="button" class="btn btn-success">Sonraki Aşamaya Geçir</button>
+              <button id="atla" type="button" class="btn btn-secondary">Atla</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).on('click', "#ele", function() {
+        var yazi = $("#isim").text();
+        $( "#cardim" ).empty();
+        console.log(yazi)
+        $.ajax({            
+            type: 'GET',
+            url: '/magnetogiris/ele?isim='+yazi+'&category='+'<%-basvurular[0].category %>',
+            success: function(data) {
+                $( "#cardim" ).append('<div class="card"> <div class="card-header">Başvuranın Doğum Tarihi: '+data[0].age +'</div> <div class="card-body"> <h5 id="isim" class="card-title">'+data[0].name +'</h5> <p class="card-text">'+data[0].information +'</p> <p class="card-text">'+data[0].discord_name +'</p> <p class="card-text">'+data[0].links +' </p> <button id="ele" type="button" class="btn btn-danger">Ele</button> <button id="sonraki" type="button" class="btn btn-success">Sonraki Aşamaya Geçir</button> <button id="atla" type="button" class="btn btn-secondary">Atla</button> </div> </div>')
+
+            }
+        });
+    });
+</script>
+<script>
+    $(document).on('click', "#sonraki", function() {
+        var yazi = $("#isim").text();
+        $( "#cardim" ).empty();
+        console.log(yazi)
+        $.ajax({            
+            type: 'GET',
+            url: '/magnetogiris/sonraki?isim='+yazi+'&category='+'<%-basvurular[0].category %>',
+            success: function(data) {
+                $( "#cardim" ).append('<div class="card"> <div class="card-header">Başvuranın Doğum Tarihi: '+data[0].age +'</div> <div class="card-body"> <h5 id="isim" class="card-title">'+data[0].name +'</h5> <p class="card-text">'+data[0].information +'</p> <p class="card-text">'+data[0].discord_name +'</p> <p class="card-text">'+data[0].links +' </p> <button id="ele" type="button" class="btn btn-danger">Ele</button> <button id="sonraki" type="button" class="btn btn-success">Sonraki Aşamaya Geçir</button> <button id="atla" type="button" class="btn btn-secondary">Atla</button> </div> </div>')
+            }
+        });
+    });
+</script>
+<script>
+    $(document).on('click', "#atla", function() {
+        var yazi = $("#isim").text();
+        $( "#cardim" ).empty();
+        console.log(yazi)
+        $.ajax({            
+            type: 'GET',
+            url: '/magnetogiris/atla?isim='+yazi+'&category='+'<%-basvurular[0].category %>',
+            success: function(data) {
+                $( "#cardim" ).append('<div class="card"> <div class="card-header">Başvuranın Doğum Tarihi: '+data[0].age +'</div> <div class="card-body"> <h5 id="isim" class="card-title">'+data[0].name +'</h5> <p class="card-text">'+data[0].information +'</p> <p class="card-text">'+data[0].discord_name +'</p> <p class="card-text">'+data[0].links +' </p> <button id="ele" type="button" class="btn btn-danger">Ele</button> <button id="sonraki" type="button" class="btn btn-success">Sonraki Aşamaya Geçir</button> <button id="atla" type="button" class="btn btn-secondary">Atla</button> </div> </div>')
+            }
+        });
+    });
+</script>
